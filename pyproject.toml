@@ -4,7 +4,7 @@ requires = ["setuptools", "wheel"]
 [project]
 name = "telegram_bot_handler"
 version = "0.1.0"
-description = "Bare-bones synchronous implementation of an interface for sending messages through a Telegram Bot. Includes a logging handler to send log records through the bot."
+description = "Bare-bones synchronous implementation of an interface for interfacing with a Telegram Bot. Includes a logging handler to send log records through the bot."
 readme = "README.md"
 authors = [
     {name = "Steven Broaddus", email = "Steven.Broaddus220@gmail.com"},
