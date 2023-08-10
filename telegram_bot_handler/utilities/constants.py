@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 MAX_TELEGRAM_MONOSPACE_MESSAGE_CHARACTER_COUNT_DESKTOP_WEB_APP = 52
 
 #: Defines the maximum number of monospace characters that can fit on an iPhone 8 Telegram app screen.
-MAX_TELEGRAM_MONOSPACE_MESSAGE_CHARACTER_COUNT_MOBILE = 31
+MAX_TELEGRAM_MONOSPACE_MESSAGE_CHARACTER_COUNT_MOBILE = 30
 
 # **********
 if __name__ == "__main__":
