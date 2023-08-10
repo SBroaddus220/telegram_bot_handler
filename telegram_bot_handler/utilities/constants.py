@@ -6,7 +6,6 @@ This module holds constants used by other project modules.
 """
 
 import logging
-from pathlib import Path
 
 # **********
 # Sets up logger
