@@ -32,6 +32,23 @@ class TelegramBotHandler(logging.Handler):
         
         #: Telegram bot to receive messages
         self.bot = TelegramBot(bot_key, chat_id, url)
+        
+    
+    @staticmethod
+    def _format_category(category: str, value: str, max_category_length: int = constants.MAX_TELEGRAM_MONOSPACE_MESSAGE_CHARACTER_COUNT_MOBILE) -> str:
+        """Formats a category and its value to be displayed in a log entry.
+
+        Args:
+            category (str): Category to format.
+            value (str): Value to format.
+            max_category_length (int, optional): Maximum length of the category. Defaults to the max monospace message character count for Telegram mobile.
+
+        Returns:
+            str: Formatted category and value.
+        """
+        formatted_category = f"{category.ljust(max_category_length)} - {value}"
+        
+        return formatted_category
     
     
     def _format_telegram_message(self, record: logging.LogRecord) -> str:
@@ -44,18 +61,6 @@ class TelegramBotHandler(logging.Handler):
         Returns:
             str: Formatted log record.
         """
-        
-        def format_category(category: str, value: str) -> str:
-            """Formats a category and its value to be displayed in a log entry.
-
-            Args:
-                category (str): Category to format.
-                value (str): Value to format.
-
-            Returns:
-                str: Formatted category and value.
-            """
-            return f"{category.ljust(max_category_length)} - {value}"
         
         # Manually add the asctime attribute to the record.
         # This is necessary because the asctime attribute is not innate to the LogRecord class.
@@ -79,7 +84,7 @@ class TelegramBotHandler(logging.Handler):
         max_category_length = max(len(category) for category in categories.keys())
         
         # Formats lines
-        formatted_category_lines = [format_category(category, value) for category, value in categories.items()]
+        formatted_category_lines = [self._format_category(category, value, max_category_length) for category, value in categories.items()]
         
         # Determines the maximum length of the lines in the log entry
         max_line_length = max(len(formatted_line) for formatted_line in formatted_category_lines + [record.message])
